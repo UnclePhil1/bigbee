@@ -738,10 +738,10 @@ export default function App() {
       {gameScreen === "paused" && (
         <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-80 z-20">
           <h2 className="text-white text-2xl mb-8">Game Paused</h2>
-          <div className="space-y-4 bg-white">
+          <div className="bg-white p-4 flex flex-row items-center justify-center">
             <Button
               onClick={handleResumeGame}
-              className="bg-green-500 hover:bg-green-600 text-white font-['Press_Start_2P'] px-6 py-3"
+              className="bg-green-500 mr-4 hover:bg-green-600 text-white font-['Press_Start_2P'] px-6 py-3"
             >
               Resume
             </Button>
