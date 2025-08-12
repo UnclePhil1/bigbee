@@ -635,7 +635,7 @@ export default function App() {
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
                       placeholder="Enter your username"
-                      className="px-4 py-2 rounded text-black font-['Press_Start_2P']"
+                      className="px-4 py-2 rounded text-white border border-blue-500 font-['Press_Start_2P']"
                     />
                     <Button
                       onClick={handleSaveUsername}

@@ -170,9 +170,17 @@ class HoneycombService {
     }
   }
 
-
-
-
+  // Get all missions
+  async getAllMissions() {
+    try {
+      const missions = await client.findMissions();
+      return missions;
+    } catch (error) {
+      console.error("Error getting all missions:", error);
+      // Return empty array if there's an error, so the game can still work
+      return [];
+    }
+  }
 }
 
 export default new HoneycombService();

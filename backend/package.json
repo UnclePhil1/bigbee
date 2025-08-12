@@ -1,13 +1,15 @@
 {
   "name": "crossroad-backend",
   "version": "1.0.0",
+  "private": true,
   "description": "Backend for CrossRoad game with Honeycomb Protocol integration",
   "main": "src/index.js",
   "type": "module",
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
-    "test": "jest"
+    "test": "jest",
+    "build": "echo 'No build step needed'"
   },
   "dependencies": {
     "@honeycomb-protocol/edge-client": "^0.0.7-beta.15",

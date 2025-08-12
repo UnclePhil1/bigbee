@@ -28,24 +28,13 @@ if (!envExists) {
 PORT=3001
 NODE_ENV=development
 
-# Frontend URL (for CORS)
 FRONTEND_URL=http://localhost:5173
 
-# Honeycomb Protocol Configuration
 HONEYCOMB_API_URL=https://edge.main.honeycombprotocol.com/
 
-# Solana Configuration
 SOLANA_RPC_URL=https://rpc.main.honeycombprotocol.com
 
-# Admin Configuration
-# This keypair will be used for backend operations
 ADMIN_PRIVATE_KEY=${adminPrivateKey}
-
-# Optional: Database Configuration (if you want to keep some data in a traditional database)
-# DATABASE_URL=postgresql://username:password@localhost:5432/crossroad
-
-# Optional: JWT Secret (if implementing authentication)
-# JWT_SECRET=your_jwt_secret_here
 `;
 
   fs.writeFileSync(envPath, envContent);

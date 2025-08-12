@@ -177,7 +177,8 @@ router.get('/stages', async (req, res) => {
     const missions = await honeycombService.getAllMissions();
     
     const stages = Object.entries(GAME_MISSIONS).map(([stageKey, config]) => {
-      const mission = missions.find(m => m.name === config.name);
+      // Ensure missions is an array and find the matching mission
+      const mission = Array.isArray(missions) ? missions.find(m => m.name === config.name) : null;
       return {
         stageId: parseInt(stageKey.replace('stage', '')),
         ...config,
