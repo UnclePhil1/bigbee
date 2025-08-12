@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loyalty Service Test</title>
+</head>
+<body>
+    <h1>Loyalty Service Test</h1>
+    <div id="output"></div>
+    
+    <script type="module">
+        import { verxioLoyaltyService, LOYALTY_CONFIG } from './src/lib/verxioLoyaltyService.ts';
+        
+        const output = document.getElementById('output');
+        
+        try {
+            output.innerHTML = '<p>Testing loyalty service...</p>';
+            
+            // Test configuration
+            output.innerHTML += `<p>Loyalty config loaded: ${Object.keys(LOYALTY_CONFIG).length} properties</p>`;
+            
+            // Test tier calculation
+            const testXP = 750;
+            const tier = verxioLoyaltyService.getCurrentTier(testXP);
+            output.innerHTML += `<p>XP ${testXP} = Tier: ${tier}</p>`;
+            
+            // Test tier progress
+            const progress = verxioLoyaltyService.getTierProgress(testXP);
+            output.innerHTML += `<p>Tier progress: ${progress.progress.toFixed(1)}% to ${progress.nextTier}</p>`;
+            
+            // Test multiplier
+            const multiplier = verxioLoyaltyService.getTierMultiplier(tier);
+            output.innerHTML += `<p>Multiplier for ${tier}: ${multiplier}x</p>`;
+            
+            output.innerHTML += '<p style="color: green;">✅ Loyalty service test completed successfully!</p>';
+            
+        } catch (error) {
+            output.innerHTML += `<p style="color: red;">❌ Error: ${error.message}</p>`;
+            console.error('Loyalty service test failed:', error);
+        }
+    </script>
+</body>
+</html>
