@@ -4,8 +4,8 @@ export const config = {
   backendUrl: import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001',
   
   // Supabase configuration
-  supabaseUrl: import.meta.env.VITE_SUPABASE_URL || '',
-  supabaseAnonKey: import.meta.env.VITE_SUPABASE_ANON_KEY || '',
+  supabaseUrl: import.meta.env.VITE_PUBLIC_SUPABASE_URL || '',
+  supabaseAnonKey: import.meta.env.VITE_PUBLIC_SUPABASE_ANON_KEY || '',
   
   // Environment detection
   isDevelopment: import.meta.env.DEV,

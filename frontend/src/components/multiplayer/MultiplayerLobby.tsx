@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { createRaceSession, joinRaceSession, getRaceSession, startRace as startRaceSession, subscribeToRaceSession, type RaceSession } from '@/lib/multiplayerService';
 import { Button } from '@/components/ui/button';
@@ -78,13 +78,13 @@ export function MultiplayerLobby({ onStartGame, onBack }: MultiplayerLobbyProps)
     try {
       // Check if session exists
       const session = await getRaceSession(sessionCode.toUpperCase());
-
+      
       if (!session) {
         throw new Error('Session not found');
       }
 
-      if (session.started) {
-        throw new Error('Session already started');
+      if (session.race_started) {
+        throw new Error('Race has already started');
       }
 
       if (session.challenger_wallet) {
@@ -272,7 +272,7 @@ export function MultiplayerLobby({ onStartGame, onBack }: MultiplayerLobbyProps)
                   <p>• Avoid vehicles and obstacles</p>
                   <p>• Use WASD or arrow keys to move</p>
                 </div>
-                
+
                 {/* Player List */}
                 {sessionData && (
                   <div className="bg-gray-800 p-4 rounded-lg border border-gray-600">
@@ -324,7 +324,7 @@ export function MultiplayerLobby({ onStartGame, onBack }: MultiplayerLobbyProps)
                   className="w-full bg-green-500 hover:bg-green-600 text-white font-['Press_Start_2P'] py-6 text-lg shadow-lg disabled:bg-gray-600 disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   <Play className="w-6 h-6 mr-2" />
-                  {sessionData?.challenger_wallet ? '🚀 Start Race!' : '⏳ Waiting for Challenger...'}
+                  {!sessionData?.challenger_wallet ? '⏳ Waiting for Challenger...' : '🚀 Start Race!'}
                 </Button>
               </div>
             )}
@@ -476,7 +476,7 @@ export function MultiplayerLobby({ onStartGame, onBack }: MultiplayerLobbyProps)
                 </div>
               </div>
             )}
-            
+
             <div className="text-center text-yellow-400 text-sm bg-yellow-900 bg-opacity-20 p-3 rounded-lg">
               🏁 First bee to reach the finish line wins! 🏁
             </div>

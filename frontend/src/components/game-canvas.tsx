@@ -9,6 +9,7 @@ interface GameCanvasProps {
   isGameOver: boolean;
   stageId?: number;
   onHoneyJarCollected?: () => void;
+
 }
 
 export function GameCanvas({
@@ -72,6 +73,7 @@ export function GameCanvas({
     setFinalScore,
     stageId,
     onHoneyJarCollected,
+
   ]);
 
   useEffect(() => {

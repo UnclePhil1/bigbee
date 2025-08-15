@@ -16,13 +16,14 @@ interface MultiplayerRacingCanvasProps {
   isHost: boolean;
   onGameEnd: (winner: string, hostScore: number, challengerScore: number) => void;
   onBackToLobby: () => void;
+
 }
 
-export function MultiplayerRacingCanvas({ 
-  sessionCode, 
-  isHost, 
-  onGameEnd, 
-  onBackToLobby 
+export function MultiplayerRacingCanvas({
+  sessionCode,
+  isHost,
+  onGameEnd,
+  onBackToLobby
 }: MultiplayerRacingCanvasProps) {
   const { publicKey } = useWallet();
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -130,6 +131,8 @@ export function MultiplayerRacingCanvas({
       }
     }
   }, [sessionCode, isHost, raceTime, localFinishedRef]);
+
+
 
   const handleCollision = useCallback(() => {
     console.log('Player collision detected!');
@@ -262,6 +265,7 @@ export function MultiplayerRacingCanvas({
       setFinalScore,
       4,
       undefined,
+      
     );
 
     gameInstanceRef.current.setMultiplayerMode(true);
@@ -644,6 +648,8 @@ export function MultiplayerRacingCanvas({
           </div>
         </div>
       )}
+
+
 
       {gameState === 'finished' && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-90 z-50">

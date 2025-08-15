@@ -33,16 +33,8 @@ export interface Stage {
   isAvailable: boolean;
 }
 
-export interface Character {
-  address: string;
-  name: string;
-  authority: string;
-  traits: any;
-}
-
 export interface UserProgress {
   user: any;
-  characters: Character[];
   completedMissions: any[];
   totalStages: number;
 }
@@ -100,26 +92,7 @@ class HoneycombBackendService {
     return this.makeRequest(`/api/honeycomb/user/${walletAddress}`);
   }
 
-  // Create character
-  async createCharacter(walletAddress: string, characterName: string, traits?: any) {
-    return this.makeRequest('/api/honeycomb/character', {
-      method: 'POST',
-      body: JSON.stringify({ walletAddress, characterName, traits }),
-    });
-  }
 
-  // Create bee character
-  async createBeeCharacter(walletAddress: string, characterName: string) {
-    return this.makeRequest('/api/game/character/create-bee', {
-      method: 'POST',
-      body: JSON.stringify({ walletAddress, characterName }),
-    });
-  }
-
-  // Get character data
-  async getCharacterData(characterId: string) {
-    return this.makeRequest(`/api/honeycomb/character/${characterId}`);
-  }
 
   // Get all stages/missions
   async getStages(): Promise<{ success: boolean; stages: Stage[] }> {
@@ -127,23 +100,19 @@ class HoneycombBackendService {
   }
 
   // Start a game stage
-  async startStage(walletAddress: string, stageId: number, characterId: string) {
+  async startStage(walletAddress: string, stageId: number) {
     return this.makeRequest('/api/game/stage/start', {
       method: 'POST',
-      body: JSON.stringify({ walletAddress, stageId, characterId }),
+      body: JSON.stringify({ walletAddress, stageId }),
     });
   }
 
   // Complete a game stage
   async completeStage(
-    walletAddress: string, 
-    stageId: number, 
-    characterId: string, 
-    gameResult: GameResult
-  ) {
+walletAddress: string, stageId: number, p0: string, gameResult: GameResult  ) {
     return this.makeRequest('/api/game/stage/complete', {
       method: 'POST',
-      body: JSON.stringify({ walletAddress, stageId, characterId, gameResult }),
+      body: JSON.stringify({ walletAddress, stageId, gameResult }),
     });
   }
 
@@ -157,10 +126,7 @@ class HoneycombBackendService {
     return this.makeRequest(`/api/user/profile/${walletAddress}`);
   }
 
-  // Get user's characters
-  async getUserCharacters(walletAddress: string) {
-    return this.makeRequest(`/api/user/characters/${walletAddress}`);
-  }
+
 
   // Get user's resources
   async getUserResources(walletAddress: string) {

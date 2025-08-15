@@ -11,4 +11,15 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  define: {
+    global: 'globalThis',
+  },
+  optimizeDeps: {
+    include: ['@solana/web3.js', '@metaplex-foundation/umi-bundle-defaults'],
+  },
+  build: {
+    rollupOptions: {
+      external: ['buffer', 'stream', 'crypto', 'http', 'https', 'url', 'zlib', 'punycode'],
+    },
+  },
 })

@@ -708,7 +708,7 @@ function WaspEnemy(tileIndex: number) {
   return enemy;
 }
 
-// Player function now always returns the BeeModel
+// Player function returns the bee model
 function Player() {
   const playerContainer = new THREE.Group();
   const beeAvatar = BeeModel();
@@ -1242,7 +1242,8 @@ export class Game {
     setGameOver: (isOver: boolean) => void,
     setFinalScore: (score: number) => void,
     stageId = 1,
-    onHoneyJarCollected?: () => void
+    onHoneyJarCollected?: () => void,
+  
   ) {
     this.setScore = setScore;
     this.setGameOver = setGameOver;
@@ -1251,7 +1252,7 @@ export class Game {
     this.onHoneyJarCollected = onHoneyJarCollected;
 
     this.scene = new THREE.Scene();
-    this.player = Player();
+          this.player = Player();
     this.map = new THREE.Group();
 
     this.scene.add(this.player);
